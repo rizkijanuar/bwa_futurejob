@@ -1,13 +1,35 @@
+import 'dart:async';
+import 'package:bwa_futurejob/pages/started_page.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({super.key});
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
+  // INISIALISASI VARIABLE
+  bool isLoading = true;
+
+  // MENAMBAHKAN TIMER UNTUK SPLASHSCREEN DISINI
+  @override
+  void initState() {
+    super.initState();
+
+    Timer(Duration(seconds: 3), () {
+      setState(() {
+        isLoading = false;
+      });
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => StartedPage()),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +55,13 @@ class _SplashPageState extends State<SplashPage> {
                 fontFamily: 'Poppins',
               ),
             ),
+            SizedBox(
+              height: 50,
+            ),
+            if (isLoading)
+              CircularProgressIndicator(
+                color: Colors.white,
+              ),
           ],
         ),
       ),
