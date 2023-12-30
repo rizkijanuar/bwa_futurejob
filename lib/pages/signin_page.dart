@@ -110,6 +110,7 @@ class _SignInPageState extends State<SignInPage> {
                     style: titleTextStyle,
                   ),
                   TextFormField(
+                    obscureText: true,
                     decoration: InputDecoration(
                       fillColor: Color(0xffF1F0F5),
                       filled: true,
@@ -119,7 +120,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(100),
-                        borderSide: BorderSide.none,
+                        borderSide: BorderSide(color: Color(0xff4141A4)),
                       ),
                     ),
                   ),
