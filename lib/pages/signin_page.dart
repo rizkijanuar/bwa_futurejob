@@ -1,3 +1,4 @@
+import 'package:bwa_futurejob/pages/home_page.dart';
 import 'package:bwa_futurejob/pages/signup_page.dart';
 import 'package:bwa_futurejob/theme.dart';
 import 'package:flutter/material.dart';
@@ -140,7 +141,14 @@ class _SignInPageState extends State<SignInPage> {
                       borderRadius: BorderRadius.circular(66),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePage(),
+                      ),
+                    );
+                  },
                   child: Text(
                     "Sign In",
                     style: buttonTextStyle,

@@ -1,6 +1,7 @@
 import 'package:bwa_futurejob/pages/home_page.dart';
 import 'package:bwa_futurejob/pages/signin_page.dart';
 import 'package:bwa_futurejob/theme.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,8 +13,57 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  bool isImageUpload = false;
+
+  bool isEmailValid = true;
+  TextEditingController emailController = TextEditingController(text: "");
+
   @override
   Widget build(BuildContext context) {
+    // WIDGET UNTUK IMAGE
+    Widget uploadedImages() {
+      return Center(
+        child: InkWell(
+          onTap: () {
+            setState(() {
+              isImageUpload = !isImageUpload;
+            });
+          },
+          child: Column(
+            children: [
+              Image.asset(
+                "assets/images/user_pic.png",
+                width: 120,
+                height: 120,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // WIDGET UNTUK SHOWED IMAGE
+    Widget showedImages() {
+      return Center(
+        child: InkWell(
+          onTap: () {
+            setState(() {
+              isImageUpload = !isImageUpload;
+            });
+          },
+          child: Column(
+            children: [
+              Image.asset(
+                "assets/images/my_pic.png",
+                width: 120,
+                height: 120,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -38,19 +88,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   "Begin New Journey",
                   style: subTitleTextStyle,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 50.0, bottom: 50.0),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          "assets/images/user_pic.png",
-                          width: 120,
-                          height: 120,
-                        ),
-                      ],
-                    ),
-                  ),
+                SizedBox(
+                  height: 50,
+                ),
+                isImageUpload ? showedImages() : uploadedImages(),
+                SizedBox(
+                  height: 50,
                 ),
 
                 // FULL NAME
@@ -97,6 +140,23 @@ class _SignUpPageState extends State<SignUpPage> {
                       height: 5,
                     ),
                     TextFormField(
+                      controller: emailController,
+                      onChanged: (value) {
+                        bool isValid = EmailValidator.validate(value);
+                        print(value);
+
+                        print(isValid);
+
+                        if (isValid) {
+                          setState(() {
+                            isEmailValid = true;
+                          });
+                        } else {
+                          setState(() {
+                            isEmailValid = false;
+                          });
+                        }
+                      },
                       decoration: InputDecoration(
                         fillColor: Color(0xffF1F0F5),
                         filled: true,
@@ -106,8 +166,18 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(100),
-                          borderSide: BorderSide(color: Color(0xff4141A4)),
+                          borderSide: BorderSide(
+                            color: isEmailValid
+                                ? Color(0xff4141A4)
+                                : Color(0xffFD4F56),
+                          ),
                         ),
+                        hintText: "",
+                      ),
+                      style: TextStyle(
+                        color: isEmailValid
+                            ? Color(0xff4141A4)
+                            : Color(0xffFD4F56),
                       ),
                     ),
                   ],
@@ -192,7 +262,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(66),
                         )),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignInPage(),
+                        ),
+                      );
+                    },
                     child: Text(
                       "Sign Up",
                       style: buttonTextStyle,
