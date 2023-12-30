@@ -1,3 +1,4 @@
+import 'package:bwa_futurejob/pages/signup_page.dart';
 import 'package:bwa_futurejob/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -148,13 +149,24 @@ class _SignInPageState extends State<SignInPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
-                child: Center(
-                  child: Text(
-                    "Don't have an account?",
-                    style: GoogleFonts.poppins(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignUpPage(),
+                      ),
+                    );
+                  },
+                  child: Center(
+                    child: Text(
+                      "Don't have an account?",
+                      style: GoogleFonts.poppins(
                         color: Color(0xffB3B5C4),
                         fontSize: 14,
-                        fontWeight: FontWeight.w300),
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
                   ),
                 ),
               ),
