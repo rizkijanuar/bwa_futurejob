@@ -1,8 +1,18 @@
 import 'package:bwa_futurejob/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:email_validator/email_validator.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  bool isEmailValid = true;
+
+  TextEditingController emailController = TextEditingController(text: "");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +58,23 @@ class SignInPage extends StatelessWidget {
                     style: titleTextStyle,
                   ),
                   TextFormField(
+                    controller: emailController,
+                    onChanged: (value) {
+                      bool isValid = EmailValidator.validate(value);
+                      print(value);
+
+                      print(isValid);
+
+                      if (isValid) {
+                        setState(() {
+                          isEmailValid = true;
+                        });
+                      } else {
+                        setState(() {
+                          isEmailValid = false;
+                        });
+                      }
+                    },
                     decoration: InputDecoration(
                       fillColor: Color(0xffF1F0F5),
                       filled: true,
@@ -57,8 +84,17 @@ class SignInPage extends StatelessWidget {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(100),
-                        borderSide: BorderSide.none,
+                        borderSide: BorderSide(
+                          color: isEmailValid
+                              ? Color(0xff4141A4)
+                              : Color(0xffFD4F56),
+                        ),
                       ),
+                      hintText: "",
+                    ),
+                    style: TextStyle(
+                      color:
+                          isEmailValid ? Color(0xff4141A4) : Color(0xffFD4F56),
                     ),
                   ),
                 ],
