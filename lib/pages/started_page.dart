@@ -1,4 +1,5 @@
 import 'package:bwa_futurejob/pages/signin_page.dart';
+import 'package:bwa_futurejob/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
 class StartedPage extends StatelessWidget {
@@ -61,7 +62,14 @@ class StartedPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(66),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SignUpPage(),
+                              ),
+                            );
+                          },
                           child: Text(
                             "Get Started",
                             style: TextStyle(
