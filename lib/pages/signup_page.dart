@@ -12,8 +12,54 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  bool isImageUpload = false;
+
   @override
   Widget build(BuildContext context) {
+    // WIDGET UNTUK IMAGE
+    Widget uploadedImages() {
+      return Center(
+        child: InkWell(
+          onTap: () {
+            setState(() {
+              isImageUpload = !isImageUpload;
+            });
+          },
+          child: Column(
+            children: [
+              Image.asset(
+                "assets/images/user_pic.png",
+                width: 120,
+                height: 120,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // WIDGET UNTUK SHOWED IMAGE
+    Widget showedImages() {
+      return Center(
+        child: InkWell(
+          onTap: () {
+            setState(() {
+              isImageUpload = !isImageUpload;
+            });
+          },
+          child: Column(
+            children: [
+              Image.asset(
+                "assets/images/my_pic.png",
+                width: 120,
+                height: 120,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -38,19 +84,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   "Begin New Journey",
                   style: subTitleTextStyle,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 50.0, bottom: 50.0),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          "assets/images/user_pic.png",
-                          width: 120,
-                          height: 120,
-                        ),
-                      ],
-                    ),
-                  ),
+                SizedBox(
+                  height: 50,
+                ),
+                isImageUpload ? showedImages() : uploadedImages(),
+                SizedBox(
+                  height: 50,
                 ),
 
                 // FULL NAME
