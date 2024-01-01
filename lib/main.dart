@@ -1,4 +1,5 @@
 import 'package:bwa_futurejob/pages/home_page.dart';
+import 'package:bwa_futurejob/pages/second_homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:bwa_futurejob/pages/splash_page.dart';
 import 'package:bwa_futurejob/pages/started_page.dart';

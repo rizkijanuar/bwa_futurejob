@@ -31,3 +31,15 @@ TextStyle jobSubtitleStyle = GoogleFonts.poppins(
   fontSize: 14,
   fontWeight: FontWeight.w400,
 );
+
+TextStyle detalTitleStyle = GoogleFonts.poppins(
+  color: Color(0xffFFFFFF),
+  fontSize: 24,
+  fontWeight: FontWeight.w600,
+);
+
+TextStyle detalSubtitleStyle = GoogleFonts.poppins(
+  color: Color(0xffFFFFFF),
+  fontSize: 16,
+  fontWeight: FontWeight.w400,
+);
