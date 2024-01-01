@@ -1,4 +1,3 @@
-import 'package:bwa_futurejob/pages/home_page.dart';
 import 'package:bwa_futurejob/pages/signin_page.dart';
 import 'package:bwa_futurejob/theme.dart';
 import 'package:email_validator/email_validator.dart';
