@@ -1,3 +1,4 @@
+import 'package:bwa_futurejob/pages/detail_page.dart';
 import 'package:bwa_futurejob/pages/home_page.dart';
 import 'package:bwa_futurejob/pages/second_homepage.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         '/signin-page': (context) => SignInPage(),
         '/signup-page': (context) => SignUpPage(),
         '/home-page': (context) => HomePage(),
+        '/detail-page': (context) => DetailPage()
       },
     );
   }
